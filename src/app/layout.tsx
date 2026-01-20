@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <StateProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden cursor-default`}
         >
           <div className="flex h-screen">
             <Sidebar />
