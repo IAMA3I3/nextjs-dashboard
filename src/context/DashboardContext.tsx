@@ -16,6 +16,15 @@ export type DashboardAction = {
 } | {
     type: "DELETE_TASK"
     payload: { id: string }
+} | {
+    type: "SET_PROJECTS"
+    payload: Project[]
+} | {
+    type: "ADD_PROJECT"
+    payload: Project
+} | {
+    type: "DELETE_PROJECT"
+    payload: { id: string }
 }
 
 export type DashboardState = {

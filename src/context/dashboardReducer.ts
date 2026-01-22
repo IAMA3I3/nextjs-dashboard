@@ -35,6 +35,21 @@ export function dashboardReducer(state: DashboardState, action: DashboardAction)
                 ...state,
                 tasks: state.tasks.filter(task => task.id !== action.payload.id)
             }
+        case "SET_PROJECTS":
+            return {
+                ...state,
+                projects: action.payload
+            }
+        case "ADD_PROJECT":
+            return {
+                ...state,
+                projects: [...state.projects, action.payload]
+            }
+        case "DELETE_PROJECT":
+            return {
+                ...state,
+                projects: state.projects.filter(project => project.id !== action.payload.id)
+            }
         default:
             return state
     }
