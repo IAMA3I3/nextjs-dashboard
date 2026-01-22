@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import Filters, { FiltersTab } from "./Filters";
 import TasksList from "./List";
 import { Task } from "@/types/task";
@@ -41,9 +41,7 @@ export default function RenderTasks() {
                 </button>
             </form>
 
-            <Suspense fallback={"Loading..."}>
-                <TasksList tasks={filteredTasks} />
-            </Suspense>
+            <TasksList tasks={filteredTasks} />
         </>
     )
 }

@@ -17,7 +17,7 @@ export default function Topbar() {
                 <div className="flex items-center space-x-4">
                     <button
                         onClick={toggleSideBar}
-                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
                     >
                         {isSideBarOpened ? <CgClose className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
                     </button>
@@ -33,12 +33,12 @@ export default function Topbar() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                    <button className="relative p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <button className="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
                         <FaRegBell className="w-6 h-6" />
                         <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                     </button>
 
-                    <button className="hidden sm:flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <button className="hidden sm:flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
                         <div className="w-8 h-8 bg-linear-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center font-semibold text-sm text-white">
                             UN
                         </div>
