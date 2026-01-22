@@ -1,7 +1,7 @@
 "use client"
 
+import { useDashboardContext } from "@/context/DashboardContext";
 import { useStateContext } from "@/context/StateContext";
-import { taskCompletionData } from "@/data/chartData";
 import {
     LineChart,
     Line,
@@ -15,6 +15,22 @@ import {
 export default function TaskCompletionChart() {
 
     const { isDarkTheme } = useStateContext()
+    const { tasks } = useDashboardContext()
+
+    const completedTasks = tasks.filter(task => task.status === "done")
+
+    const data = completedTasks.reduce<Record<string, number>>(
+        (acc, task) => {
+            const day = new Date(task.createdAt).toLocaleDateString("en-US", { weekday: "short" })
+            acc[day] = (acc[day] || 0) + 1
+            return acc
+        }, {}
+    )
+
+    const chartData = Object.entries(data).map(([name, completed]) => ({
+        name,
+        completed
+    }))
 
     return (
         <div className=" w-full p-8 rounded-xl shadow-lg bg-linear-60 from-black/15 dark:from-white/20 via-black/10 dark:via-white/30 to-black/15 dark:to-white/20">
@@ -31,7 +47,7 @@ export default function TaskCompletionChart() {
                 <div className="h-64 sm:h-72 md:h-80 w-full">
                     <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                         <LineChart
-                            data={taskCompletionData}
+                            data={chartData}
                             margin={{ top: 5, right: 10, left: -20, bottom: 5 }}
                         >
                             <CartesianGrid strokeDasharray="3 3" stroke={isDarkTheme ? "#e3e3e3" : "#666666"} />

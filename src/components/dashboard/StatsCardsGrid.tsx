@@ -1,11 +1,11 @@
 "use client"
 
-import { useDashboardStore } from "@/store/useDashboardStore"
 import StatsCard from "./StatsCard"
+import { useDashboardContext } from "@/context/DashboardContext"
 
 export default function StatsCardsGrid() {
 
-    const { projects, tasks } = useDashboardStore()
+    const { projects, tasks } = useDashboardContext()
 
     const completedTasks = tasks.filter(task => task.status === "done")
 

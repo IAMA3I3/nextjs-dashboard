@@ -1,13 +1,14 @@
 "use client"
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Filters, { FiltersTab } from "./Filters";
 import TasksList from "./List";
-import { useDashboardStore } from "@/store/useDashboardStore";
+import { Task } from "@/types/task";
+import { useDashboardContext } from "@/context/DashboardContext";
 
 export default function RenderTasks() {
 
-    const { tasks } = useDashboardStore()
+    const { tasks, dispatch } = useDashboardContext()
 
     const [filter, setFilter] = useState<FiltersTab>("all")
 
@@ -16,7 +17,33 @@ export default function RenderTasks() {
     return (
         <>
             <Filters status={filter} setFilter={setFilter} />
-            <TasksList tasks={filteredTasks} />
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+
+                    const newTask: Task = {
+                        id: crypto.randomUUID(),
+                        title: "New Task",
+                        projectId: "1",
+                        status: "todo",
+                        createdAt: new Date().toISOString()
+                    };
+
+                    dispatch({ type: "ADD_TASK", payload: newTask })
+                }}
+                className="mb-6"
+            >
+                <button
+                    type="submit"
+                    className="px-4 py-2 bg-black text-white rounded-md"
+                >
+                    Add Task
+                </button>
+            </form>
+
+            <Suspense fallback={"Loading..."}>
+                <TasksList tasks={filteredTasks} />
+            </Suspense>
         </>
     )
 }

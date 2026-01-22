@@ -39,7 +39,9 @@ export default function Topbar() {
                     </button>
 
                     <button className="hidden sm:flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-                        <div className="w-8 h-8 bg-linear-to-br from-purple-500 to-pink-500 rounded-full"></div>
+                        <div className="w-8 h-8 bg-linear-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center font-semibold text-sm text-white">
+                            UN
+                        </div>
                         <FaAngleDown className="w-4 h-4" />
                     </button>
                 </div>

@@ -5,6 +5,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import { StateProvider } from "@/context/StateContext";
 import Topbar from "@/components/layout/Topbar";
 import Footer from "@/components/layout/Footer";
+import { DashboardProvider } from "@/context/DashboardProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,20 +30,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StateProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden cursor-default`}
-        >
-          <div className="flex h-screen">
-            <Sidebar />
-            <div className="flex-1 flex flex-col overflow-hidden">
-              <Topbar />
-              <main className="flex-1 overflow-y-auto p-6">
-                {children}
-              </main>
+        <DashboardProvider>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden cursor-default`}
+          >
+            <div className="flex h-screen">
+              <Sidebar />
+              <div className="flex-1 flex flex-col overflow-hidden">
+                <Topbar />
+                <main className="flex-1 overflow-y-auto p-6">
+                  {children}
+                </main>
+              </div>
             </div>
-          </div>
-          <Footer />
-        </body>
+            <Footer />
+          </body>
+        </DashboardProvider>
       </StateProvider>
     </html>
   );

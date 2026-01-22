@@ -1,11 +1,23 @@
 import { Task } from "@/types/task"
 import StatusBadge from "./StatusBadge"
+import { useMounted } from "@/lib/useMounted";
+import { useDashboardContext } from "@/context/DashboardContext";
+import { FaTrashCan } from "react-icons/fa6";
 
 type Props = {
     tasks: Task[]
 }
 
 export default function TasksList({ tasks }: Props) {
+
+    const { dispatch } = useDashboardContext()
+
+    const mounted = useMounted();
+
+    if (!mounted) {
+        return null;
+    }
+
 
     return (
         <div className=" space-y-4">
@@ -16,7 +28,10 @@ export default function TasksList({ tasks }: Props) {
                         className=" bg-white dark:bg-slate-700 border-2 border-gray-100 dark:border-slate-800 p-4 rounded-lg shadow dark:shadow-black/40 flex justify-between gap-4 items-center"
                     >
                         <p className=" font-medium">{task.title}</p>
-                        <StatusBadge status={task.status} />
+                        <div className=" flex gap-4 items-center">
+                            <StatusBadge onClick={() => dispatch({ type: "UPDATE_TASK_STATUS", payload: { id: task.id } })} status={task.status} />
+                            <FaTrashCan onClick={() => dispatch({ type: "DELETE_TASK", payload: { id: task.id } })} className=" text-red-500 cursor-pointer" />
+                        </div>
                     </div>
                 ))
             }

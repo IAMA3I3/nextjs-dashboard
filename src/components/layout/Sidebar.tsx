@@ -68,12 +68,12 @@ export default function Sidebar() {
                     <div className="p-4 border-t border-gray-800">
                         <div className={`flex items-center space-x-3 ${!isSideBarOpened && 'lg:justify-center'}`}>
                             <div className="w-10 h-10 bg-linear-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center font-semibold">
-                                AS
+                                UN
                             </div>
                             {isSideBarOpened && (
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium truncate">Abdulazeez Salami</p>
-                                    <p className="text-xs text-gray-400 truncate">abdulazeezsalami19@gmail.com</p>
+                                    <p className="text-sm font-medium truncate">User Name</p>
+                                    <p className="text-xs text-gray-400 truncate">username@gmail.com</p>
                                 </div>
                             )}
                         </div>
