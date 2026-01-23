@@ -6,6 +6,7 @@ import { StateProvider } from "@/context/StateContext";
 import Topbar from "@/components/layout/Topbar";
 import Footer from "@/components/layout/Footer";
 import { DashboardProvider } from "@/context/DashboardProvider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({
               </div>
             </div>
             <Footer />
+            <Toaster position="bottom-right" />
           </body>
         </DashboardProvider>
       </StateProvider>

@@ -3,7 +3,8 @@
 import { useDashboardContext } from "@/context/DashboardContext"
 import StatusBadge from "../tasks/StatusBadge"
 import { FaTrashCan } from "react-icons/fa6"
-import { Project } from "@/types/project"
+import { Button } from "../ui/Button"
+import Link from "next/link"
 
 export default function ProjectsList() {
 
@@ -11,25 +12,9 @@ export default function ProjectsList() {
 
     return (
         <div className="space-y-6">
-            <form
-                onSubmit={e => {
-                    e.preventDefault()
-
-                    const newProject: Project = {
-                        id: crypto.randomUUID(),
-                        name: "New Project"
-                    }
-
-                    dispatch({ type: "ADD_PROJECT", payload: newProject })
-                }}
-            >
-                <button
-                    type="submit"
-                    className="px-4 py-2 bg-black text-white rounded-md"
-                >
-                    Add Project
-                </button>
-            </form>
+            <Link href={"/projects/create"} className=" inline-block">
+                <Button text="ADD PROJECT" />
+            </Link>
             {
                 projects.map(project => {
                     const projectTasks = tasks.filter(task => task.projectId === project.id)
