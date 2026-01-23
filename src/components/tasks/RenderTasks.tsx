@@ -5,6 +5,8 @@ import Filters, { FiltersTab } from "./Filters";
 import TasksList from "./List";
 import { Task } from "@/types/task";
 import { useDashboardContext } from "@/context/DashboardContext";
+import Link from "next/link";
+import { Button } from "../ui/Button";
 
 export default function RenderTasks() {
 
@@ -17,7 +19,7 @@ export default function RenderTasks() {
     return (
         <>
             <Filters status={filter} setFilter={setFilter} />
-            <form
+            {/* <form
                 onSubmit={(e) => {
                     e.preventDefault();
 
@@ -39,7 +41,11 @@ export default function RenderTasks() {
                 >
                     Add Task
                 </button>
-            </form>
+            </form> */}
+
+            <Link href={"/tasks/create"} className=" inline-block mb-6">
+                <Button text="ADD TASK" />
+            </Link>
 
             <TasksList tasks={filteredTasks} />
         </>
